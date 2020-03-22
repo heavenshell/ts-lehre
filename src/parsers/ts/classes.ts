@@ -32,7 +32,7 @@ export const getClassLikeDoc = (
   }
 
   if (node.heritageClauses) {
-    const heritageClauses = node.heritageClauses.map(n => {
+    const heritageClauses = node.heritageClauses.map((n) => {
       const value = n.getText(source)
       const values = value.split(' ')
       if (values.length >= 3) {
@@ -44,7 +44,7 @@ export const getClassLikeDoc = (
   }
 
   const members = node.members as NodeArray<MemberProps>
-  classDoc.methods = members.map(member => {
+  classDoc.methods = members.map((member) => {
     const position = source.getLineAndCharacterOfPosition(
       member.getStart(source)
     )
@@ -76,7 +76,7 @@ export const getClassLikeDoc = (
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const parameters: NodeArray<ParameterDeclaration> = (member as any)
         .parameters
-      doc.params = parameters.map(p => {
+      doc.params = parameters.map((p) => {
         return getParameter(p, source)
       })
     }

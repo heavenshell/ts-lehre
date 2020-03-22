@@ -93,15 +93,15 @@ const config = {
 }
 
 main(config)
-  .then(data => {
+  .then((data) => {
     if (data) {
-      data.forEach(d => {
+      data.forEach((d) => {
         if (d) {
           process.stdout.write(d)
         }
       })
     }
   })
-  .catch(e => {
+  .catch((e) => {
     console.log(e) // eslint-disable-line no-console
   })

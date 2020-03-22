@@ -16,7 +16,7 @@ const formatIndent = (doc: string, indent: number) => {
     return doc
   }
   const docs = doc.split('\n')
-  return docs.map(d => `${' '.repeat(indent)}${d}`).join('\n')
+  return docs.map((d) => `${' '.repeat(indent)}${d}`).join('\n')
 }
 
 export const generateDocs = (templatePath: string, docs: DocProps[]) => {
@@ -27,7 +27,7 @@ export const generateDocs = (templatePath: string, docs: DocProps[]) => {
     generatePropertyDoc,
   } = require(templatePath) // eslint-disable-line @typescript-eslint/no-var-requires
   const results: OutputProps[] = []
-  docs.forEach(doc => {
+  docs.forEach((doc) => {
     switch (doc.type) {
       case 'class':
       case 'interface':
@@ -45,7 +45,7 @@ export const generateDocs = (templatePath: string, docs: DocProps[]) => {
         })
 
         doc.methods &&
-          doc.methods.forEach(method => {
+          doc.methods.forEach((method) => {
             const fn =
               method.type === 'function'
                 ? generateFunctionDoc

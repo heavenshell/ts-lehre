@@ -11,7 +11,7 @@ const generateClassDoc = (doc: ClassDocProps) => {
 /**
  * ${doc.name}.
  *
- * @${doc.heritageClauses.map(h => `${h.type} ${h.value}`).join('\n * @')}
+ * @${doc.heritageClauses.map((h) => `${h.type} ${h.value}`).join('\n * @')}
  */`
 
   return d.trim()
@@ -37,7 +37,7 @@ module.exports = {
  * ${doc.name}.
  *
  * @param ${doc.params
-   .map(p => `{${p.alias || p.type}} ${p.name}`)
+   .map((p) => `{${p.alias || p.type}} ${p.name}`)
    .join('\n * @param ')}`
 
     const delimiter =
