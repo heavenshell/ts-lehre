@@ -85,7 +85,7 @@ export const run = (
   options: CompilerOptionProps
 ) => {
   if (!code) {
-    return ''
+    return []
   }
   const lines = code.split('\n')
   const docs = parse(code, lines, nest, {
