@@ -63,7 +63,7 @@ export const parse = (
 
           const declarations = (node as VariableStatement).declarationList
             .declarations
-          declarations.forEach(d => {
+          declarations.forEach((d) => {
             const doc = getVariableDoc(d, source, start, end)
             docs.push(doc)
           })

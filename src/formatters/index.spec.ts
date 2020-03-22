@@ -5,7 +5,7 @@ import { generateDocs, getFormatterPath } from '.'
 describe('formatters', () => {
   it('getFormatterPath', () => {
     const files = ['jsdoc', 'esdoc', 'tsdoc']
-    files.map(f => {
+    files.map((f) => {
       const actual = getFormatterPath(f)
       expect(actual).toBe(path.resolve(path.join(__dirname, `./${f}`)))
     })

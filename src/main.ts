@@ -18,8 +18,8 @@ const walk = (
   }
   const files = fs
     .readdirSync(dir)
-    .map(f => path.join(dir, f))
-    .filter(f => {
+    .map((f) => path.join(dir, f))
+    .filter((f) => {
       if (ignorePatterns === '') {
         return true
       }
@@ -30,7 +30,7 @@ const walk = (
     })
 
   allFiles.push(...files)
-  files.forEach(f => {
+  files.forEach((f) => {
     if (fs.statSync(f).isDirectory()) {
       walk(f, allFiles, ignores, ignorePatterns)
     }
@@ -39,7 +39,7 @@ const walk = (
 
 const getCodeFromStdin = () => {
   // https://github.com/nodejs/node/blob/master/doc/api/process.md#processstdin
-  return new Promise<string>(resolve => {
+  return new Promise<string>((resolve) => {
     const contents: string[] = []
     process.stdin.setEncoding('utf8')
     process.stdin.on('data', (chunk: string) => {
@@ -64,8 +64,8 @@ const getTargetFiles = (
 ) => {
   const dirs: string[] = []
   walk(path.resolve(targetDir), dirs, ignores, ignorePatterns)
-  return dirs.filter(v => {
-    const ext = path.extname(v)
+  return dirs.filter((dir) => {
+    const ext = path.extname(dir)
     switch (ext) {
       case '.ts':
       case '.tsx':
@@ -103,7 +103,7 @@ export const main = async (config: ConfigProps) => {
   if (config.targetDir) {
     const { targetDir, ignores, ignorePatterns } = config
     const files = getTargetFiles(targetDir, ignores, ignorePatterns)
-    files.forEach(f => targets.push(f))
+    files.forEach((f) => targets.push(f))
   } else {
     if (config.targetFile) {
       targets.push(config.targetFile)
@@ -135,7 +135,7 @@ export const main = async (config: ConfigProps) => {
           options
         ),
       ]
-    : targets.map(t => {
+    : targets.map((t) => {
         const code = getCodeFromFile(t)
         return run(code, templatePath, config.nest, outputFn, options)
       })

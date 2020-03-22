@@ -19,7 +19,7 @@ export const getFunctionDoc = (
     params,
   }
   if (node.hasOwnProperty('parameters')) {
-    doc.params = node.parameters.map(n => {
+    doc.params = node.parameters.map((n) => {
       return getParameter(n, source)
     })
   }
