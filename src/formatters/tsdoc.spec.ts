@@ -149,13 +149,7 @@ describe('tsdoc', () => {
     }
     const doc = generateFunctionDoc(params)
     const docs = doc.split('\n')
-    expect(docs).toEqual([
-      '/**',
-      ' * foo.',
-      ' *',
-      ' * @returns',
-      ' */',
-    ])
+    expect(docs).toEqual(['/**', ' * foo.', ' *', ' * @returns', ' */'])
   })
 
   it('generateFunctionDoc with param', () => {
@@ -175,13 +169,7 @@ describe('tsdoc', () => {
     }
     const doc = generateFunctionDoc(params)
     const docs = doc.split('\n')
-    expect(docs).toEqual([
-      '/**',
-      ' * foo.',
-      ' *',
-      ' * @param arg1 -',
-      ' */',
-    ])
+    expect(docs).toEqual(['/**', ' * foo.', ' *', ' * @param arg1 -', ' */'])
   })
 
   it('generateFunctionDoc with params', () => {
