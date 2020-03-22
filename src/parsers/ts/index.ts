@@ -4,7 +4,6 @@ import {
   isClassDeclaration,
   isInterfaceDeclaration,
   isFunctionDeclaration,
-  // isVariableDeclaration,
   Node as TsNode,
   SyntaxKind,
   VariableStatement,
@@ -57,7 +56,9 @@ export const parse = (
           break
         }
         if (node.hasOwnProperty('declarationList')) {
-          const start = source.getLineAndCharacterOfPosition(node.getStart(source))
+          const start = source.getLineAndCharacterOfPosition(
+            node.getStart(source)
+          )
           const end = source.getLineAndCharacterOfPosition(node.getEnd())
 
           const declarations = (node as VariableStatement).declarationList
@@ -71,15 +72,6 @@ export const parse = (
           }
         }
         break
-      // case SyntaxKind.VariableDeclaration:
-      //   if (isVariableDeclaration(node) && node.name) {
-      //     const doc = getVariableDoc(node, source, getLineAndPosition(lines))
-      //     docs.push(doc)
-      //   }
-      //   if (!nest) {
-      //     return
-      //   }
-      //   break
       case SyntaxKind.InterfaceDeclaration:
         if (node.hasOwnProperty('jsDoc')) {
           break
