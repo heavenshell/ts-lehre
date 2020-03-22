@@ -1,0 +1,4 @@
+{
+  "*.{ts,tsx}": ["eslint --fix", "git add"],
+  "*.md": ["prettier --parser markdown --write", "markdownlint"]
+}
