@@ -63,6 +63,7 @@ export const getClassLikeDoc = (
       case SyntaxKind.Constructor:
         doc.name = 'Constructor'
         break
+      case SyntaxKind.PropertySignature:
       case SyntaxKind.PropertyDeclaration:
         doc.name = (member.name as Identifier).escapedText.toString()
         doc.type = 'property'
