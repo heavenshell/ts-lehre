@@ -1,5 +1,7 @@
 # Lehre
 
+![build](https://github.com/heavenshell/ts-lehre/workflows/build/badge.svg)
+
 Lehre is document block generator.
 
 Generate JsDoc style document from source code.
