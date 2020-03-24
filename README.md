@@ -128,7 +128,6 @@ generatePropertyDoc: ({
   returnType: string,
 }) => string
 
-
 #### generateFunctionDoc
 
 generateFunctionDoc: ({
