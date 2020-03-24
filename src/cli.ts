@@ -104,4 +104,5 @@ main(config)
   })
   .catch((e) => {
     console.log(e) // eslint-disable-line no-console
+    process.exit(1)
   })

@@ -15,6 +15,13 @@
     "tsdoc",
     "api"
   ],
+  "bin": {
+    "lehre": "./dist/bin/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heavenshell/ts-lehre.git"
+  },
   "private": true,
   "scripts": {
     "build": "tsc",

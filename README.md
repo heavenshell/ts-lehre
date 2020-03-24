@@ -26,6 +26,8 @@ lehre --target-dir=./src --ignore-patterns="spec.ts"
 
 ## Formatters
 
+You can choose document block formatter from [JsDoc](https://jsdoc.app/),[ESDoc](https://github.com/esdoc/esdoc),[TSDoc](https://github.com/microsoft/tsdoc) and your custom formatter.
+
 ### JsDoc(default)
 
 ```console
@@ -49,6 +51,99 @@ cat src/app.ts | lehre --stdin --formatter=tsdoc
 ```console
 cat src/app/ts | lehre --template-path=./examples/template.js
 ```
+
+## Custom formatter
+
+You can create your own cutom document block formatter.
+
+Return string value and it insert above to signature automatically.
+
+`examples/template.js` is sample formatter.
+
+### Formatter api
+
+#### generateClassDoc
+
+```typescript
+generateClassDoc: (
+  name: string,
+  type: string,
+  start: { line: number, charactor: number },
+  end: { line: number, charactor: number },
+  methods: [
+    name: string,
+    type: string,
+    start: { line: number, charactor: number },
+    end: { line: number, charactor: number },
+    params: ParamProps[
+      name: string,
+      type: string,
+      default: string,
+      alias: string,
+    ],
+    returnType: string,
+  ],
+  heritageClauses: [{ type: string, value: string }],
+) => string
+```
+
+#### generateInterfaceDoc
+
+```typescript
+generateInterfaceDoc: ({
+  name: string,
+  type: string,
+  start: { line: number, charactor: number },
+  end: { line: number, charactor: number },
+  methods: [
+    name: string,
+    type: string,
+    start: { line: number, charactor: number },
+    end: { line: number, charactor: number },
+    params: ParamProps[
+      name: string,
+      type: string,
+      default: string,
+      alias: string,
+    ],
+    returnType: string,
+  ],
+  heritageClauses: [{ type: string, value: string }],
+}) => string
+```
+
+#### generatePropertyDoc
+
+generatePropertyDoc: ({
+  name: string,
+  type: string,
+  start: { line: number, charactor: number },
+  end: { line: number, charactor: number },
+  params: ParamProps[
+    name: string,
+    type: string,
+    default: string,
+    alias: string,
+  ],
+  returnType: string,
+}) => string
+
+
+#### generateFunctionDoc
+
+generateFunctionDoc: ({
+  name: string,
+  type: string,
+  start: { line: number, charactor: number },
+  end: { line: number, charactor: number },
+  params: ParamProps[
+    name: string,
+    type: string,
+    default: string,
+    alias: string,
+  ],
+  returnType: string,
+}) => string
 
 ## LICENSE
 
