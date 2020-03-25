@@ -148,7 +148,6 @@ generateFunctionDoc: ({
 }) => string
 ```
 
-
 ## LICENSE
 
 MIT
