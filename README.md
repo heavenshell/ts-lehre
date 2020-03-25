@@ -114,6 +114,7 @@ generateInterfaceDoc: ({
 
 #### generatePropertyDoc
 
+```typescript
 generatePropertyDoc: ({
   name: string,
   type: string,
@@ -127,9 +128,11 @@ generatePropertyDoc: ({
   ],
   returnType: string,
 }) => string
+```
 
 #### generateFunctionDoc
 
+```typescript
 generateFunctionDoc: ({
   name: string,
   type: string,
@@ -143,6 +146,7 @@ generateFunctionDoc: ({
   ],
   returnType: string,
 }) => string
+```
 
 ## LICENSE
 
