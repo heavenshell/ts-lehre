@@ -27,6 +27,7 @@
     "build": "tsc",
     "build:dev": "tsc",
     "precommit": "lint-staged",
+    "prepare": "npm run build",
     "lint:ts": "eslint --color --cache 'src/**/*.ts{,x}'",
     "lint:md": "markdownlint README.md",
     "lint": "run-p -l lint:*",
