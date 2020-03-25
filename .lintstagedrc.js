@@ -4,5 +4,5 @@ module.exports = {
     'eslint --fix',
     'git add',
   ],
-  '*.md': ['prettier --parser markdown --write', 'textlint', 'markdownlint'],
+  '*.md': ['prettier --parser markdown --write', 'markdownlint'],
 }
