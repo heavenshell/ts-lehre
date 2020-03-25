@@ -2,12 +2,12 @@ import { FunctionDeclaration, SourceFile } from 'typescript'
 
 import { getParameter } from './parameters'
 
-import { ParamProps } from '../../types'
+import { FunctionDocProps, ParamProps } from '../../types'
 
 export const getFunctionDoc = (
   node: FunctionDeclaration,
   source: SourceFile
-) => {
+): FunctionDocProps => {
   const params: ParamProps[] = []
 
   const doc = {

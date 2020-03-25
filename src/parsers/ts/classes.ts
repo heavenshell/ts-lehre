@@ -21,7 +21,7 @@ export const getClassLikeDoc = (
   node: ClassLikeDeclarationBase | InterfaceDeclaration,
   source: SourceFile,
   getLineAndPosition: (lineno: number) => LineProps
-) => {
+): ClassDocProps => {
   const classDoc: ClassDocProps = {
     name: node.name ? node.name.text : '',
     type: '',

@@ -9,14 +9,14 @@ import {
 
 import { getParameter } from './parameters'
 
-import { LineProps, ParamProps } from '../../types'
+import { FunctionDocProps, LineProps, ParamProps } from '../../types'
 
 export const getVariableDoc = (
   node: VariableDeclaration,
   source: SourceFile,
   start: LineProps,
   end: LineProps
-) => {
+): FunctionDocProps => {
   const params: ParamProps[] = []
   const doc = {
     name: (node.name as Identifier).text,
