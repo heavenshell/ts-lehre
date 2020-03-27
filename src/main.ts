@@ -1,10 +1,20 @@
 import fs from 'fs'
 import path from 'path'
 
-import { stringOutputter, jsonOutputter } from './outputters'
+import { fileOutputter, stringOutputter, jsonOutputter } from './outputters'
 import { parse } from './parsers/ts'
 import { generateDocs, getFormatterPath } from './formatters'
 import { CompilerOptionProps, ConfigProps, OutputProps } from './types'
+
+type OutputFnProps = ({
+  lines,
+  docs,
+  filePath,
+}: {
+  lines: string[]
+  docs: OutputProps[]
+  filePath: string
+}) => string
 
 const walk = (
   dir: string,
@@ -79,9 +89,10 @@ const getTargetFiles = (
 
 export const run = (
   code: string,
+  filePath: string,
   templatePath: string,
   nest: boolean,
-  outputFn: (lines: string[], results: OutputProps[]) => string,
+  outputFn: OutputFnProps,
   options: CompilerOptionProps
 ): string => {
   if (!code) {
@@ -95,7 +106,7 @@ export const run = (
 
   const results: OutputProps[] = generateDocs(templatePath, docs)
   // require('util').inspect.defaultOptions.depth = null
-  return outputFn(lines, results)
+  return outputFn({ lines, docs: results, filePath })
 }
 
 export const main = async (config: ConfigProps) => {
@@ -118,7 +129,12 @@ export const main = async (config: ConfigProps) => {
       ? getFormatterPath(config.formatter)
       : path.resolve(config.templatePath)
 
-  const outputFn = config.style === 'string' ? stringOutputter : jsonOutputter
+  const outputFn =
+    config.write && config.isStdin === false
+      ? fileOutputter
+      : config.style === 'string'
+      ? stringOutputter
+      : jsonOutputter
 
   const options = {
     scriptKind: config.scriptKind,
@@ -129,15 +145,16 @@ export const main = async (config: ConfigProps) => {
     ? [
         run(
           await getCodeFromStdin(),
+          '',
           templatePath,
           config.nest,
           outputFn,
           options
         ),
       ]
-    : targets.map((t) => {
-        const code = getCodeFromFile(t)
-        return run(code, templatePath, config.nest, outputFn, options)
+    : targets.map((filePath) => {
+        const code = getCodeFromFile(filePath)
+        return run(code, filePath, templatePath, config.nest, outputFn, options)
       })
 
   return outputs

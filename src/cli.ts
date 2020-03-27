@@ -49,6 +49,7 @@ program
   .option('-d, --target-dir [path]', 'Path to target directory.')
   .option('--stdin', 'Force reading input from STDIN')
   .option('--nest', 'Enable to generate inner document')
+  .option('--write', 'Edit files in-place')
   .option('--template-path [path]', 'Custom formatter path')
   .option('--ignores [path]', 'Ignore directory names')
   .option('--ignore-patterns [patterns]', 'Ignore patterns')
@@ -90,6 +91,7 @@ const config = {
   ignores: getIgnores(program.ignores || ''),
   ignorePatterns: program.ignorePatterns || '',
   nest: program.nest || false,
+  write: program.write || false,
 }
 
 main(config)

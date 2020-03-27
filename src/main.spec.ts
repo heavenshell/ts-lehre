@@ -20,6 +20,7 @@ describe('main', () => {
       ignores: [],
       ignorePatterns: '',
       nest: true,
+      write: false,
     }
 
     const actual = await main(config)
@@ -59,6 +60,7 @@ describe('main', () => {
       ignores: [],
       ignorePatterns: '',
       nest: true,
+      write: false,
     }
 
     const actual = await main(config)

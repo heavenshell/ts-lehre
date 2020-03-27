@@ -87,7 +87,10 @@ export const getClassLikeDoc = (
     }
     if (member.hasOwnProperty('type')) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      doc.returnType = (member as any).type.getText(source)
+      const type = (member as any).type
+      if (type) {
+        doc.returnType = type.getText(source)
+      }
     }
 
     return doc

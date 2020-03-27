@@ -132,7 +132,11 @@ describe('outputters', () => {
   ]
 
   it('stringOutputter', () => {
-    const actual = stringOutputter(code.split('\n'), docs)
+    const actual = stringOutputter({
+      lines: code.split('\n'),
+      docs,
+      filePath: '',
+    })
     const expected = [
       '/**',
       ' * foo.',
@@ -209,7 +213,11 @@ describe('outputters', () => {
   })
 
   it('jsonOutputter', () => {
-    const actual = jsonOutputter(code.split('\n'), docs)
+    const actual = jsonOutputter({
+      lines: code.split('\n'),
+      docs,
+      filePath: '',
+    })
     expect(JSON.stringify(docs)).toBe(actual)
   })
 })

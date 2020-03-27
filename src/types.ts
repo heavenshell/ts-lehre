@@ -15,6 +15,7 @@ export type ConfigProps = {
   ignores: string[]
   ignorePatterns: string
   nest: boolean
+  write: boolean
 } & CompilerOptionProps
 
 export type LineProps = {
