@@ -1,7 +1,6 @@
 {
   "name": "lehre",
   "version": "0.1.0",
-  "main": "dist/bin/lehre",
   "author": "Shinya Ohyanagi",
   "license": "MIT",
   "description": "Generate document block(JsDoc,EsDoc,TsDoc) from signature",
@@ -16,7 +15,7 @@
     "api"
   ],
   "bin": {
-    "lehre": "./dist/bin/cli.js"
+    "lehre": "./bin/lehre"
   },
   "repository": {
     "type": "git",
