@@ -10,11 +10,14 @@ export const getFunctionDoc = (
 ): FunctionDocProps => {
   const params: ParamProps[] = []
 
+  const start = source.getLineAndCharacterOfPosition(node.getStart(source))
+  const end = source.getLineAndCharacterOfPosition(node.getEnd())
+
   const doc = {
     name: node.name ? node.name.text : '',
     type: 'function',
-    start: source.getLineAndCharacterOfPosition(node.getStart(source)),
-    end: source.getLineAndCharacterOfPosition(node.getEnd()),
+    start: { line: start.line, column: start.character },
+    end: { line: end.line, column: end.character },
     returnType: '',
     params,
   }

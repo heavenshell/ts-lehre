@@ -18,8 +18,8 @@ describe('variables', () => {
       false,
       ScriptKind.TS
     )
-    const start = { line: 0, character: 0 }
-    const end = { line: 0, character: 20 }
+    const start = { line: 0, column: 0 }
+    const end = { line: 0, column: 20 }
     const statement = source.statements[0] as VariableStatement
     const actual = getVariableDoc(
       statement.declarationList.declarations[0],
@@ -49,8 +49,8 @@ describe('variables', () => {
       false,
       ScriptKind.TS
     )
-    const start = { line: 0, character: 0 }
-    const end = { line: 0, character: 43 }
+    const start = { line: 0, column: 0 }
+    const end = { line: 0, column: 43 }
     const statement = source.statements[0] as VariableStatement
     const actual = getVariableDoc(
       statement.declarationList.declarations[0],
@@ -92,8 +92,8 @@ describe('variables', () => {
       false,
       ScriptKind.TS
     )
-    const start = { line: 0, character: 0 }
-    const end = { line: 0, character: 54 }
+    const start = { line: 0, column: 0 }
+    const end = { line: 0, column: 54 }
     const statement = source.statements[0] as VariableStatement
     const actual = getVariableDoc(
       statement.declarationList.declarations[0],
@@ -105,8 +105,8 @@ describe('variables', () => {
     expect(actual).toEqual({
       name: 'foo',
       type: 'function',
-      start: { line: 0, character: 0 },
-      end: { line: 0, character: 54 },
+      start: { line: 0, column: 0 },
+      end: { line: 0, column: 54 },
       params: [
         {
           name: 'arg1',
@@ -135,8 +135,8 @@ describe('variables', () => {
       false,
       ScriptKind.TS
     )
-    const start = { line: 0, character: 0 }
-    const end = { line: 0, character: 65 }
+    const start = { line: 0, column: 0 }
+    const end = { line: 0, column: 65 }
     const statement = source.statements[0] as VariableStatement
     const actual = getVariableDoc(
       statement.declarationList.declarations[0],
@@ -178,8 +178,8 @@ describe('variables', () => {
       false,
       ScriptKind.TS
     )
-    const start = { line: 0, character: 0 }
-    const end = { line: 0, character: 55 }
+    const start = { line: 0, column: 0 }
+    const end = { line: 0, column: 55 }
     const statement = source.statements[0] as VariableStatement
     const actual = getVariableDoc(
       statement.declarationList.declarations[0],

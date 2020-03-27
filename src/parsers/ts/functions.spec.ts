@@ -29,8 +29,8 @@ describe('functions', () => {
     expect(actual).toEqual({
       name: 'foo',
       type: 'function',
-      start: { line: 1, character: 4 },
-      end: { line: 2, character: 5 },
+      start: { line: 1, column: 4 },
+      end: { line: 2, column: 5 },
       params: [],
       returnType: '',
     })
@@ -57,8 +57,8 @@ describe('functions', () => {
     expect(actual).toEqual({
       name: 'foo',
       type: 'function',
-      start: { line: 1, character: 4 },
-      end: { line: 2, character: 5 },
+      start: { line: 1, column: 4 },
+      end: { line: 2, column: 5 },
       params: [
         {
           name: 'arg1',
@@ -98,8 +98,8 @@ describe('functions', () => {
     expect(actual).toEqual({
       name: 'foo',
       type: 'function',
-      start: { line: 1, character: 4 },
-      end: { line: 2, character: 5 },
+      start: { line: 1, column: 4 },
+      end: { line: 2, column: 5 },
       params: [
         {
           name: 'arg1',
@@ -139,8 +139,8 @@ describe('functions', () => {
     expect(actual).toEqual({
       name: 'foo',
       type: 'function',
-      start: { line: 1, character: 4 },
-      end: { line: 2, character: 5 },
+      start: { line: 1, column: 4 },
+      end: { line: 2, column: 5 },
       params: [
         {
           name: 'arg1',
@@ -180,8 +180,8 @@ describe('functions', () => {
     expect(actual).toEqual({
       name: 'foo',
       type: 'function',
-      start: { line: 1, character: 4 },
-      end: { line: 2, character: 5 },
+      start: { line: 1, column: 4 },
+      end: { line: 2, column: 5 },
       params: [
         {
           name: 'arg1',

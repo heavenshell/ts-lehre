@@ -36,22 +36,22 @@ describe('classes', () => {
     expect(actual).toEqual({
       name: 'Foo',
       type: '',
-      start: { line: 1, character: 4 },
-      end: { line: 6, character: 5 },
+      start: { line: 1, column: 4 },
+      end: { line: 6, column: 5 },
       methods: [
         {
           name: 'props',
           type: 'property',
-          start: { line: 2, character: 6 },
-          end: { line: 2, character: 18 },
+          start: { line: 2, column: 6 },
+          end: { line: 2, column: 18 },
           params: [],
           returnType: 'Props',
         },
         {
           name: 'Constructor',
           type: 'function',
-          start: { line: 3, character: 6 },
-          end: { line: 3, character: 48 },
+          start: { line: 3, column: 6 },
+          end: { line: 3, column: 48 },
           params: [
             {
               name: 'arg1',
@@ -71,8 +71,8 @@ describe('classes', () => {
         {
           name: 'render',
           type: 'function',
-          start: { line: 4, character: 6 },
-          end: { line: 5, character: 7 },
+          start: { line: 4, column: 6 },
+          end: { line: 5, column: 7 },
           params: [
             {
               name: 'arg1',
@@ -110,14 +110,14 @@ describe('classes', () => {
     expect(actual).toEqual({
       name: 'Foo',
       type: '',
-      start: { line: 1, character: 4 },
-      end: { line: 3, character: 5 },
+      start: { line: 1, column: 4 },
+      end: { line: 3, column: 5 },
       methods: [
         {
           name: 'foo',
           type: 'function',
-          start: { line: 2, character: 6 },
-          end: { line: 2, character: 45 },
+          start: { line: 2, column: 6 },
+          end: { line: 2, column: 45 },
           params: [
             {
               name: 'arg1',

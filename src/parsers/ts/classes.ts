@@ -22,11 +22,14 @@ export const getClassLikeDoc = (
   source: SourceFile,
   getLineAndPosition: (lineno: number) => LineProps
 ): ClassDocProps => {
+  const start = source.getLineAndCharacterOfPosition(node.getStart(source))
+  const end = source.getLineAndCharacterOfPosition(node.getEnd())
+
   const classDoc: ClassDocProps = {
     name: node.name ? node.name.text : '',
     type: '',
-    start: source.getLineAndCharacterOfPosition(node.getStart(source)),
-    end: source.getLineAndCharacterOfPosition(node.getEnd()),
+    start: { line: start.line, column: start.character },
+    end: { line: end.line, column: end.character },
     methods: [],
     heritageClauses: [],
   }
@@ -49,12 +52,13 @@ export const getClassLikeDoc = (
       member.getStart(source)
     )
     const start = getLineAndPosition(position.line)
+    const end = source.getLineAndCharacterOfPosition(member.getEnd())
 
     const doc: FunctionDocProps = {
       name: '',
       type: 'function',
       start,
-      end: source.getLineAndCharacterOfPosition(member.getEnd()),
+      end: { line: end.line, column: end.character },
       params: [],
       returnType: '',
     }

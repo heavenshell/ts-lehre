@@ -18,9 +18,9 @@ import { DocProps, CompilerOptionProps } from '../../types'
 export const getLineAndPosition = (lines: string[]) => (lineno: number) => {
   if (lines[lineno]) {
     const line = lines[lineno]
-    return { line: lineno, character: line.search(/[A-z0-9_]/) }
+    return { line: lineno, column: line.search(/[A-z0-9_]/) }
   }
-  return { line: lineno, character: 0 }
+  return { line: lineno, column: 0 }
 }
 
 export const parse = (
@@ -64,7 +64,12 @@ export const parse = (
           const declarations = (node as VariableStatement).declarationList
             .declarations
           declarations.forEach((d) => {
-            const doc = getVariableDoc(d, source, start, end)
+            const doc = getVariableDoc(
+              d,
+              source,
+              { line: start.line, column: start.character },
+              { line: end.line, column: end.character }
+            )
             docs.push(doc)
           })
           if (!nest) {

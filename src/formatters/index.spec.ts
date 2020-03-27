@@ -16,8 +16,8 @@ describe('formatters', () => {
       {
         name: 'foo',
         type: 'function',
-        start: { line: 0, character: 0 },
-        end: { line: 1, character: 1 },
+        start: { line: 0, column: 0 },
+        end: { line: 1, column: 1 },
         returnType: 'number',
         params: [
           { name: 'arg1', type: 'string', default: '', alias: 'string' },
@@ -38,8 +38,8 @@ describe('formatters', () => {
           ' * @returns {number}',
           ' */',
         ].join('\n'),
-        start: { line: 0, character: 0 },
-        end: { line: 1, character: 1 },
+        start: { line: 0, column: 0 },
+        end: { line: 1, column: 1 },
         type: 'function',
       },
     ])
@@ -50,8 +50,8 @@ describe('formatters', () => {
       {
         name: 'foo',
         type: 'function',
-        start: { line: 0, character: 0 },
-        end: { line: 3, character: 1 },
+        start: { line: 0, column: 0 },
+        end: { line: 3, column: 1 },
         returnType: 'number',
         rawType: '',
         params: [
@@ -73,8 +73,8 @@ describe('formatters', () => {
           ' * @returns {number}',
           ' */',
         ].join('\n'),
-        start: { line: 0, character: 0 },
-        end: { line: 3, character: 1 },
+        start: { line: 0, column: 0 },
+        end: { line: 3, column: 1 },
         type: 'function',
       },
     ])
@@ -85,14 +85,14 @@ describe('formatters', () => {
       {
         name: 'Foo',
         type: 'interface',
-        start: { line: 0, character: 0 },
-        end: { line: 2, character: 1 },
+        start: { line: 0, column: 0 },
+        end: { line: 2, column: 1 },
         methods: [
           {
             name: 'foo',
             type: 'function',
-            start: { line: 1, character: 2 },
-            end: { line: 1, character: 41 },
+            start: { line: 1, column: 2 },
+            end: { line: 1, column: 41 },
             params: [
               { name: 'arg1', type: 'number', default: '', alias: 'number' },
               { name: 'arg2', type: 'string', default: '', alias: 'string' },
@@ -108,8 +108,8 @@ describe('formatters', () => {
     expect(actual).toEqual([
       {
         doc: ['/**', ' * Foo.', ' */'].join('\n'),
-        start: { line: 0, character: 0 },
-        end: { line: 2, character: 1 },
+        start: { line: 0, column: 0 },
+        end: { line: 2, column: 1 },
         type: 'interface',
       },
       {
@@ -122,8 +122,8 @@ describe('formatters', () => {
           '   * @returns {string}',
           '   */',
         ].join('\n'),
-        start: { line: 1, character: 2 },
-        end: { line: 1, character: 41 },
+        start: { line: 1, column: 2 },
+        end: { line: 1, column: 41 },
         type: 'function',
       },
     ])
@@ -134,22 +134,22 @@ describe('formatters', () => {
       {
         name: 'Foo',
         type: 'class',
-        start: { line: 0, character: 0 },
-        end: { line: 8, character: 1 },
+        start: { line: 0, column: 0 },
+        end: { line: 8, column: 1 },
         methods: [
           {
             name: 'foo',
             type: 'property',
-            start: { line: 1, character: 2 },
-            end: { line: 1, character: 10 },
+            start: { line: 1, column: 2 },
+            end: { line: 1, column: 10 },
             params: [],
             returnType: 'Bar',
           },
           {
             name: 'Constructor',
             type: 'function',
-            start: { line: 3, character: 2 },
-            end: { line: 4, character: 3 },
+            start: { line: 3, column: 2 },
+            end: { line: 4, column: 3 },
             params: [
               { name: 'arg1', type: 'number', default: '', alias: 'number' },
             ],
@@ -158,8 +158,8 @@ describe('formatters', () => {
           {
             name: 'save',
             type: 'function',
-            start: { line: 6, character: 2 },
-            end: { line: 7, character: 3 },
+            start: { line: 6, column: 2 },
+            end: { line: 7, column: 3 },
             params: [
               { name: 'arg1', type: 'string', default: '', alias: 'string' },
             ],
@@ -175,14 +175,14 @@ describe('formatters', () => {
     expect(actual).toEqual([
       {
         doc: ['/**', ' * Foo.', ' */'].join('\n'),
-        start: { line: 0, character: 0 },
-        end: { line: 8, character: 1 },
+        start: { line: 0, column: 0 },
+        end: { line: 8, column: 1 },
         type: 'class',
       },
       {
         doc: ['  /**', '   * @type {Bar}', '   */'].join('\n'),
-        start: { line: 1, character: 2 },
-        end: { line: 1, character: 10 },
+        start: { line: 1, column: 2 },
+        end: { line: 1, column: 10 },
         type: 'property',
       },
       {
@@ -193,8 +193,8 @@ describe('formatters', () => {
           '   * @param {number} arg1',
           '   */',
         ].join('\n'),
-        start: { line: 3, character: 2 },
-        end: { line: 4, character: 3 },
+        start: { line: 3, column: 2 },
+        end: { line: 4, column: 3 },
         type: 'function',
       },
       {
@@ -206,8 +206,8 @@ describe('formatters', () => {
           '   * @returns {void}',
           '   */',
         ].join('\n'),
-        start: { line: 6, character: 2 },
-        end: { line: 7, character: 3 },
+        start: { line: 6, column: 2 },
+        end: { line: 7, column: 3 },
         type: 'function',
       },
     ])

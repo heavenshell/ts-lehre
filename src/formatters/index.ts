@@ -38,7 +38,7 @@ export const generateDocs = (templatePath: string, docs: DocProps[]) => {
           break
         }
         results.push({
-          doc: formatIndent(fn(doc as ClassDocProps), doc.start.character),
+          doc: formatIndent(fn(doc as ClassDocProps), doc.start.column),
           start: doc.start,
           end: doc.end,
           type: doc.type,
@@ -54,7 +54,7 @@ export const generateDocs = (templatePath: string, docs: DocProps[]) => {
               return
             }
             results.push({
-              doc: formatIndent(fn(method), method.start.character),
+              doc: formatIndent(fn(method), method.start.column),
               start: method.start,
               end: method.end,
               type: method.type,
@@ -69,7 +69,7 @@ export const generateDocs = (templatePath: string, docs: DocProps[]) => {
         results.push({
           doc: formatIndent(
             generateFunctionDoc(doc as FunctionDocProps),
-            doc.start.character
+            doc.start.column
           ),
           start: doc.start,
           end: doc.end,

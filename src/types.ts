@@ -19,7 +19,7 @@ export type ConfigProps = {
 
 export type LineProps = {
   line: number
-  character: number
+  column: number
 }
 
 export type ParamProps = {
