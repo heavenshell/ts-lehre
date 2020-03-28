@@ -1,18 +1,16 @@
 import path from 'path'
 
-import { ScriptKind, ScriptTarget } from 'typescript'
-
 import { main } from './main'
+import { ConfigProps } from './types'
 
 describe('main', () => {
   it('run with target file', async () => {
-    const config = {
+    const config: ConfigProps = {
+      parser: 'ts',
       targetFile: path.resolve(
         path.join(__dirname, '__fixtures__', 'functions.ts')
       ),
       targetDir: '',
-      scriptKind: ScriptKind.TS,
-      scriptTarget: ScriptTarget.ESNext,
       formatter: 'jsdoc',
       isStdin: false,
       templatePath: '',
@@ -21,6 +19,8 @@ describe('main', () => {
       ignorePatterns: '',
       nest: true,
       write: false,
+      scriptTarget: 'esnext',
+      scriptKind: 'ts',
     }
 
     const actual = await main(config)
@@ -48,11 +48,9 @@ describe('main', () => {
   })
 
   it('run with target dir', async () => {
-    const config = {
+    const config: ConfigProps = {
       targetFile: '',
       targetDir: path.resolve(path.join(__dirname, '__fixtures__')),
-      scriptKind: ScriptKind.TS,
-      scriptTarget: ScriptTarget.ESNext,
       formatter: 'jsdoc',
       isStdin: false,
       templatePath: '',
@@ -61,6 +59,9 @@ describe('main', () => {
       ignorePatterns: '',
       nest: true,
       write: false,
+      parser: 'ts',
+      scriptTarget: 'esnext',
+      scriptKind: 'ts',
     }
 
     const actual = await main(config)

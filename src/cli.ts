@@ -1,43 +1,6 @@
-import { ScriptKind, ScriptTarget } from 'typescript'
 import program from 'commander'
 
 import { main } from './main'
-
-const getTarget = (target: string) => {
-  switch (target.toLowerCase()) {
-    case 'es3':
-      return ScriptTarget.ES3
-    case 'es5':
-      return ScriptTarget.ES5
-    case 'es2015':
-      return ScriptTarget.ES2015
-    case 'es2016':
-      return ScriptTarget.ES2016
-    case 'es2017':
-      return ScriptTarget.ES2017
-    case 'es2018':
-      return ScriptTarget.ES2018
-    case 'es2019':
-      return ScriptTarget.ES2019
-    case 'es2020':
-      return ScriptTarget.ES2020
-    default:
-      return ScriptTarget.ESNext
-  }
-}
-
-const getKind = (kind: string) => {
-  switch (kind.toLowerCase()) {
-    case 'js':
-      return ScriptKind.JS
-    case 'jsx':
-      return ScriptKind.JSX
-    case 'tsx':
-      return ScriptKind.TSX
-    default:
-      return ScriptKind.TS
-  }
-}
 
 const getIgnores = (ignores: string) => {
   return ignores.split(',')
@@ -53,6 +16,7 @@ program
   .option('--template-path [path]', 'Custom formatter path')
   .option('--ignores [path]', 'Ignore directory names')
   .option('--ignore-patterns [patterns]', 'Ignore patterns')
+  .option('--parser [target]', 'Parser', /^(ts|babel)$/, 'ts')
   .option(
     '--scriptTarget [target]',
     'ScriptTarget default is ESNext',
@@ -80,18 +44,19 @@ program
   .parse(process.argv)
 
 const config = {
+  parser: program.parser,
   targetDir: program.targetDir || '',
   targetFile: program.targetFile || '',
   formatter: program.formatter,
   isStdin: program.stdin || false,
-  scriptTarget: getTarget(program.scriptTarget),
-  scriptKind: getKind(program.scriptKind),
   templatePath: program.templatePath || '',
   style: program.style,
   ignores: getIgnores(program.ignores || ''),
   ignorePatterns: program.ignorePatterns || '',
   nest: program.nest || false,
   write: program.write || false,
+  scriptTarget: program.scriptTarget,
+  scriptKind: program.scriptKind,
 }
 
 main(config)

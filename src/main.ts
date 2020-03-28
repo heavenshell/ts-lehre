@@ -2,7 +2,8 @@ import fs from 'fs'
 import path from 'path'
 
 import { fileOutputter, stringOutputter, jsonOutputter } from './outputters'
-import { parse } from './parsers/ts'
+import { parse as babelParse } from './parsers/babel'
+import { parse as tsParse } from './parsers/ts'
 import { generateDocs, getFormatterPath } from './formatters'
 import { CompilerOptionProps, ConfigProps, OutputProps } from './types'
 
@@ -88,6 +89,7 @@ const getTargetFiles = (
 }
 
 export const run = (
+  parser: 'babel' | 'ts',
   code: string,
   filePath: string,
   templatePath: string,
@@ -99,9 +101,14 @@ export const run = (
     return ''
   }
   const lines = code.split('\n')
-  const docs = parse(code, lines, nest, {
-    scriptKind: options.scriptKind,
+
+  const parse = parser === 'babel' ? babelParse : tsParse
+  const docs = parse({
+    code,
+    lines,
+    nest,
     scriptTarget: options.scriptTarget,
+    scriptKind: options.scriptKind,
   })
 
   const results: OutputProps[] = generateDocs(templatePath, docs)
@@ -144,6 +151,7 @@ export const main = async (config: ConfigProps) => {
   const outputs = config.isStdin
     ? [
         run(
+          config.parser,
           await getCodeFromStdin(),
           '',
           templatePath,
@@ -154,7 +162,15 @@ export const main = async (config: ConfigProps) => {
       ]
     : targets.map((filePath) => {
         const code = getCodeFromFile(filePath)
-        return run(code, filePath, templatePath, config.nest, outputFn, options)
+        return run(
+          config.parser,
+          code,
+          filePath,
+          templatePath,
+          config.nest,
+          outputFn,
+          options
+        )
       })
 
   return outputs

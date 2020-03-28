@@ -1,13 +1,6 @@
-import { ScriptKind, ScriptTarget } from 'typescript'
-
 import { getLineAndPosition, parse } from '.'
 
 describe('parsers', () => {
-  const options = {
-    scriptTarget: ScriptTarget.ESNext,
-    scriptKind: ScriptKind.TS,
-  }
-
   it('getLineAndPosition', () => {
     const code = `
     class Foo {
@@ -38,7 +31,13 @@ describe('parsers', () => {
         const baz = (arg1) => {}
       }
     }`
-    const docs = parse(code, code.split('\n'), false, options)
+    const docs = parse({
+      code,
+      lines: code.split('\n'),
+      nest: false,
+      scriptTarget: 'esnext',
+      scriptKind: 'ts',
+    })
 
     expect(docs).toEqual([
       {

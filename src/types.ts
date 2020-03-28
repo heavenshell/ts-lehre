@@ -1,11 +1,24 @@
-import { ClassElement, ScriptKind, ScriptTarget, TypeElement } from 'typescript'
+import { ClassElement, TypeElement } from 'typescript'
+
+type Target =
+  | 'es3'
+  | 'es5'
+  | 'es2015'
+  | 'es2016'
+  | 'es2017'
+  | 'es2018'
+  | 'es2019'
+  | 'es2020'
+  | 'esnext'
+type Kind = 'js' | 'jsx' | 'ts' | 'tsx'
 
 export type CompilerOptionProps = {
-  scriptTarget: ScriptTarget
-  scriptKind: ScriptKind
+  scriptTarget: Target
+  scriptKind: Kind
 }
 
 export type ConfigProps = {
+  parser: 'babel' | 'ts'
   targetDir?: string
   targetFile?: string
   isStdin?: boolean
@@ -17,6 +30,14 @@ export type ConfigProps = {
   nest: boolean
   write: boolean
 } & CompilerOptionProps
+
+export type ParseProps = {
+  code: string
+  lines: string[]
+  nest?: boolean
+  scriptTarget?: Target
+  scriptKind?: Kind
+}
 
 export type LineProps = {
   line: number
