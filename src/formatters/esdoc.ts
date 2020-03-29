@@ -1,5 +1,10 @@
 import { ClassDocProps, FunctionDocProps } from '../types'
 
+const format = (value: string) => {
+  const types = value.split('\n').map((v) => v.replace(/^\s+/, ''))
+  return types.join(' ')
+}
+
 const generateClassDoc = (doc: ClassDocProps) => {
   const d =
     doc.heritageClauses.length === 0
@@ -37,7 +42,7 @@ module.exports = {
  * ${doc.name}.
  *
  * @param ${doc.params
-   .map((p) => `{${p.type}} ${p.name}`)
+   .map((p) => `{${format(p.type)}} ${p.name}`)
    .join('\n * @param ')}`
 
     const delimiter =
