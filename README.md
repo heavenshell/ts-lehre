@@ -24,9 +24,15 @@ Specify directory and ignore patterns.
 lehre --target-dir=./src --ignore-patterns="spec.ts"
 ```
 
+Specify file and use babel parser.
+
+```console
+lehere --target-file=./src/app.ts --parser=babel
+```
+
 ## Formatters
 
-You can choose document block formatter from [JsDoc](https://jsdoc.app/),[ESDoc](https://github.com/esdoc/esdoc),[TSDoc](https://github.com/microsoft/tsdoc) and your custom formatter.
+You can choose document block formatter from [JsDoc](https://jsdoc.app/), [ESDoc](https://github.com/esdoc/esdoc), [TSDoc](https://github.com/microsoft/tsdoc) and your custom formatter.
 
 ### JsDoc(default)
 

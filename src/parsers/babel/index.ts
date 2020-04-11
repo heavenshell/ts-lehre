@@ -23,6 +23,10 @@ export const parse = ({ code, lines, scriptKind }: ParseProps) => {
 
     switch (node.type) {
       case 'VariableDeclaration':
+        // JsDoc exists.
+        if (node.leadingComments) {
+          break
+        }
         const declaration = node.declarations[0] as VariableDeclarator
         const init = declaration.init as ArrowFunctionExpression
         if (init && init.type === 'ArrowFunctionExpression') {
@@ -34,9 +38,17 @@ export const parse = ({ code, lines, scriptKind }: ParseProps) => {
         }
         break
       case 'TSInterfaceDeclaration':
+        // JsDoc exists.
+        if (node.leadingComments) {
+          break
+        }
         docs.push({ ...getInterfaceDoc(node, lines), start, end })
         break
       case 'ExportDefaultDeclaration':
+        // JsDoc exists.
+        if (node.leadingComments) {
+          break
+        }
         switch (node.declaration.type) {
           case 'ClassDeclaration':
             // Decorator exists
@@ -65,9 +77,17 @@ export const parse = ({ code, lines, scriptKind }: ParseProps) => {
         }
         break
       case 'ClassDeclaration':
+        // JsDoc exists.
+        if (node.leadingComments) {
+          break
+        }
         docs.push({ ...getClassDoc(node, lines), start, end })
         break
       case 'ExportNamedDeclaration':
+        // JsDoc exists.
+        if (node.leadingComments) {
+          break
+        }
         switch (node.declaration.type) {
           case 'ClassDeclaration':
             // `export class Foo {}`
@@ -110,6 +130,10 @@ export const parse = ({ code, lines, scriptKind }: ParseProps) => {
         }
         break
       case 'FunctionDeclaration':
+        // JsDoc exists.
+        if (node.leadingComments) {
+          break
+        }
         docs.push({ ...getFunctionDoc(node, lines), start, end })
         break
     }
