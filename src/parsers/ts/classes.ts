@@ -37,7 +37,7 @@ export const getClassLikeDoc = (
   switch (node.kind) {
     case SyntaxKind.InterfaceDeclaration:
       classDoc.type = 'interface'
-      break;
+      break
     case SyntaxKind.ClassDeclaration:
       classDoc.type = 'class'
       break
