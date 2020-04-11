@@ -7,7 +7,7 @@
   "keywords": [
     "typescript",
     "documentation",
-    "documentat",
+    "document",
     "generator",
     "jsdoc",
     "esdoc",
@@ -33,6 +33,9 @@
     "test": "jest --maxWorkers=1"
   },
   "devDependencies": {
+    "@babel/parser": "7.9.4",
+    "@babel/types": "7.9.0",
+    "@types/babel-types": "7.0.7",
     "@types/jest": "25.2.1",
     "@types/node": "13.11.0",
     "@typescript-eslint/eslint-plugin": "2.26.0",

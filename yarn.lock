@@ -144,6 +144,11 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
+"@babel/parser@7.9.4":
+  version "7.9.4"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.9.4.tgz#68a35e6b0319bbc014465be43828300113f2f2e8"
+  integrity sha512-bC49otXX6N0/VYhgOMh4gnP26E9xnDZK3TmbNpxYzzz9BQLBosQwfyOe9/cXUU3txYhTzLCbcqd5c8y/OmCjHA==
+
 "@babel/parser@^7.1.0", "@babel/parser@^7.7.5", "@babel/parser@^7.8.6", "@babel/parser@^7.9.0":
   version "7.9.0"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.9.0.tgz#f821b32313f07ee570976d3f6238e8d2d66e0a8e"
@@ -194,7 +199,7 @@
     globals "^11.1.0"
     lodash "^4.17.13"
 
-"@babel/types@^7.0.0", "@babel/types@^7.3.0", "@babel/types@^7.8.3", "@babel/types@^7.8.6", "@babel/types@^7.9.0":
+"@babel/types@7.9.0", "@babel/types@^7.0.0", "@babel/types@^7.3.0", "@babel/types@^7.8.3", "@babel/types@^7.8.6", "@babel/types@^7.9.0":
   version "7.9.0"
   resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.9.0.tgz#00b064c3df83ad32b2dbf5ff07312b15c7f1efb5"
   integrity sha512-BS9JKfXkzzJl8RluW4JGknzpiUV7ZrvTayM6yfqLTVBEnFtyowVIOu6rqxRd5cVO6yGoWf4T8u8dgK9oB+GCng==
@@ -400,6 +405,11 @@
   integrity sha512-Debi3Baff1Qu1Unc3mjJ96MgpbwTn43S1+9yJ0llWygPwDNu2aaWBD6yc9y/Z8XDRNhx7U+u2UDg2OGQXkclUQ==
   dependencies:
     type-detect "4.0.8"
+
+"@types/babel-types@7.0.7":
+  version "7.0.7"
+  resolved "https://registry.yarnpkg.com/@types/babel-types/-/babel-types-7.0.7.tgz#667eb1640e8039436028055737d2b9986ee336e3"
+  integrity sha512-dBtBbrc+qTHy1WdfHYjBwRln4+LWqASWakLHsWHR2NWHIFkv4W3O070IGoGLEBrJBvct3r0L1BUPuvURi7kYUQ==
 
 "@types/babel__core@^7.1.0":
   version "7.1.6"

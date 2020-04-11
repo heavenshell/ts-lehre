@@ -39,7 +39,7 @@ describe('variables', () => {
   })
 
   it('getVariableDoc with args', () => {
-    const code = `const foo = (arg1: string, arg2: number) {}
+    const code = `const foo = (arg1: string, arg2: number) => {}
     `
 
     const source = createSourceFile(
@@ -105,8 +105,8 @@ describe('variables', () => {
     expect(actual).toEqual({
       name: 'foo',
       type: 'function',
-      start: { line: 0, column: 0 },
-      end: { line: 0, column: 54 },
+      start,
+      end,
       params: [
         {
           name: 'arg1',
@@ -126,7 +126,7 @@ describe('variables', () => {
   })
 
   it('getVariableDoc with default parameter', () => {
-    const code = `const foo = (arg1: string = 'foo', arg2: number = 100): number {}`
+    const code = `const foo = (arg1: string = 'foo', arg2: number = 100): number => {}`
 
     const source = createSourceFile(
       'lehre.ts',

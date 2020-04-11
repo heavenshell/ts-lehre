@@ -88,7 +88,7 @@ describe('main', () => {
       '   */',
       '  arg1: string',
       '  /**',
-      '   * Constructor.',
+      '   * constructor.',
       '   *',
       '   * @param {string} arg1',
       '   */',

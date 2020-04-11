@@ -2,12 +2,14 @@ import program from 'commander'
 
 import { main } from './main'
 
+import { version } from '../package.json'
+
 const getIgnores = (ignores: string) => {
   return ignores.split(',')
 }
 
 program
-  .version('1.0.0', '-v, --version')
+  .version(version, '-v, --version')
   .option('-t, --target-file [path]', 'Path to target file.')
   .option('-d, --target-dir [path]', 'Path to target directory.')
   .option('--stdin', 'Force reading input from STDIN')
