@@ -7,6 +7,9 @@ import { parse as tsParse } from './parsers/ts'
 import { generateDocs, getFormatterPath } from './formatters'
 import { CompilerOptionProps, ConfigProps, OutputProps } from './types'
 
+// Enable display nested object.
+// require('util').inspect.defaultOptions.depth = null
+
 type OutputFnProps = ({
   lines,
   docs,
@@ -68,6 +71,17 @@ const getCodeFromFile = (targetFile: string) => {
   return fs.readFileSync(targetPath, { encoding: 'utf-8' })
 }
 
+const isValidExt = (ext: string) => {
+  switch (ext) {
+    case '.ts':
+    case '.tsx':
+    case '.js':
+    case '.mjs':
+      return true
+  }
+  return false
+}
+
 const getTargetFiles = (
   targetDir: string,
   ignores: string[],
@@ -75,17 +89,7 @@ const getTargetFiles = (
 ) => {
   const dirs: string[] = []
   walk(path.resolve(targetDir), dirs, ignores, ignorePatterns)
-  return dirs.filter((dir) => {
-    const ext = path.extname(dir)
-    switch (ext) {
-      case '.ts':
-      case '.tsx':
-      case '.js':
-      case '.mjs':
-        return true
-    }
-    return false
-  })
+  return dirs.filter((dir) => isValidExt(path.extname(dir)))
 }
 
 export const run = (
@@ -112,7 +116,6 @@ export const run = (
   })
 
   const results: OutputProps[] = generateDocs(templatePath, docs)
-  // require('util').inspect.defaultOptions.depth = null
   return outputFn({ lines, docs: results, filePath })
 }
 
@@ -123,7 +126,7 @@ export const main = async (config: ConfigProps) => {
     const files = getTargetFiles(targetDir, ignores, ignorePatterns)
     files.forEach((f) => targets.push(f))
   } else {
-    if (config.targetFile) {
+    if (config.targetFile && isValidExt(path.extname(config.targetFile))) {
       targets.push(config.targetFile)
     }
   }

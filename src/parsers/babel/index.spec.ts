@@ -1,18 +1,6 @@
-import { getLineAndPosition, parse } from '.'
+import { parse } from './index'
 
-describe('parsers/ts', () => {
-  it('getLineAndPosition', () => {
-    const code = `
-    class Foo {
-      constructor(arg1, arg2) {
-      }
-    }`
-    const { line, column } = getLineAndPosition(code.split('\n'))(2)
-    // Line and position of `constructor`.
-    expect(line).toBe(2)
-    expect(column).toBe(6)
-  })
-
+describe('parsers/babel', () => {
   it('parse', () => {
     const code = `
     const foo = () => {}

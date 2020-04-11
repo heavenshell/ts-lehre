@@ -34,6 +34,15 @@ export const getClassLikeDoc = (
     heritageClauses: [],
   }
 
+  switch (node.kind) {
+    case SyntaxKind.InterfaceDeclaration:
+      classDoc.type = 'interface'
+      break;
+    case SyntaxKind.ClassDeclaration:
+      classDoc.type = 'class'
+      break
+  }
+
   if (node.heritageClauses) {
     const heritageClauses = node.heritageClauses.map((n) => {
       const value = n.getText(source)
@@ -65,7 +74,7 @@ export const getClassLikeDoc = (
 
     switch (member.kind) {
       case SyntaxKind.Constructor:
-        doc.name = 'Constructor'
+        doc.name = 'constructor'
         break
       case SyntaxKind.PropertySignature:
       case SyntaxKind.PropertyDeclaration:
@@ -95,5 +104,6 @@ export const getClassLikeDoc = (
 
     return doc
   })
+
   return classDoc
 }

@@ -45,8 +45,8 @@ export const getVariableDoc = (
       }
     }
   } else {
-    doc.type = 'property'
-    if (node.hasOwnProperty('type') && node.type) {
+    if (node.initializer && node.hasOwnProperty('type') && node.type) {
+      doc.type = 'property'
       const type = (node.initializer as ArrowFunction).type
       if (type) {
         doc.returnType = type.getText(source)
