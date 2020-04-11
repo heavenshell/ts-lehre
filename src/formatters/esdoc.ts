@@ -1,8 +1,15 @@
-import { ClassDocProps, FunctionDocProps } from '../types'
+import { ClassDocProps, FunctionDocProps, ParamProps } from '../types'
 
 const format = (value: string) => {
   const types = value.split('\n').map((v) => v.replace(/^\s+/, ''))
   return types.join(' ')
+}
+
+const formatParam = (param: ParamProps) => {
+  if (param.name) {
+    return `{${format(param.type)}} ${param.name}`
+  }
+  return `{${format(param.type)}}`
 }
 
 const generateClassDoc = (doc: ClassDocProps) => {
@@ -41,9 +48,7 @@ module.exports = {
 /**
  * ${doc.name}.
  *
- * @param ${doc.params
-   .map((p) => `{${format(p.type)}} ${p.name}`)
-   .join('\n * @param ')}`
+ * @param ${doc.params.map(formatParam).join('\n * @param ')}`
 
     const delimiter =
       doc.params.length === 0 && doc.returnType !== ''
