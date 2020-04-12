@@ -2,7 +2,7 @@ import { ArrowFunctionExpression, Node, VariableDeclarator } from '@babel/types'
 
 import { getClassDoc } from './classes'
 import { getFunctionDoc } from './functions'
-import { getAst, getLocation } from './helper'
+import { getAst, getLocation, isCommentBlock } from './helper'
 import { getInterfaceDoc } from './interfaces'
 import { getVariableDoc } from './variables'
 
@@ -13,6 +13,10 @@ export const parse = ({ code, lines, scriptKind }: ParseProps) => {
 
   const docs: DocProps[] = []
   const visit = (node: Node) => {
+    if (node.leadingComments && isCommentBlock(node.leadingComments)) {
+      return
+    }
+
     const start = node.loc
       ? { line: node.loc.start.line - 1, column: node.loc.start.column }
       : { line: 0, column: 0 }
