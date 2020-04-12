@@ -1,5 +1,5 @@
 import { parse, ParserPluginWithOptions, ParserPlugin } from '@babel/parser'
-import { Comment, Node } from '@babel/types'
+import { Comment, File, Node } from '@babel/types'
 
 export const getLocation = (node: Node) => {
   const start = node.loc ? node.loc.start : { line: 1, column: 0 }
@@ -11,7 +11,7 @@ export const getLocation = (node: Node) => {
   }
 }
 
-export const getAst = (code: string, parser = 'typescript') => {
+export const getAst = (code: string, parser = 'typescript'): File => {
   const isFlow = parser === 'js'
   const lang = isFlow ? 'flow' : 'typescript'
   const plugins: ParserPlugin[] = [
