@@ -1,5 +1,5 @@
 import { parse, ParserPluginWithOptions, ParserPlugin } from '@babel/parser'
-import { Node } from '@babel/types'
+import { Comment, Node } from '@babel/types'
 
 export const getLocation = (node: Node) => {
   const start = node.loc ? node.loc.start : { line: 1, column: 0 }
@@ -35,4 +35,11 @@ export const getAst = (code: string, parser = 'typescript') => {
     ranges: true,
     plugins,
   })
+}
+
+export const isCommentBlock = (comments: readonly Comment[]) => {
+  const index = comments.findIndex(
+    (comment: Comment) => comment.type === 'CommentBlock'
+  )
+  return index === -1 ? false : true
 }
