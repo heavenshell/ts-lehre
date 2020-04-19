@@ -25,7 +25,7 @@ const isDryRun = argv => {
 module.exports = {
   mergeStrategy: { toSameBranch: ['master'] },
   updateChangelog: false,
-  publishCommand: ({ tag }) => `echo Start publish ${tag}`,
+  publishCommand: ({ defaultCommand }) => `${defaultCommand} --access public`,
   afterPublish: async () => {
     const octokit = getOctokit()
     const { data } = await octokit.repos.listReleases({ owner, repo })
