@@ -1,6 +1,6 @@
 {
   "name": "lehre",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Shinya Ohyanagi",
   "license": "MIT",
   "description": "Generate document block(JsDoc,EsDoc,TsDoc) from signature",
