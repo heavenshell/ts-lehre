@@ -36,7 +36,8 @@
   "dependencies": {
     "@babel/parser": "7.9.4",
     "@babel/types": "7.9.5",
-    "commander": "5.0.0"
+    "commander": "5.0.0",
+    "typescript": "3.8.3"
   },
   "devDependencies": {
     "@types/babel-types": "7.0.7",
@@ -56,8 +57,7 @@
     "prettier": "2.0.4",
     "shipjs": "0.18.2",
     "ts-jest": "25.3.1",
-    "ts-node": "8.8.2",
-    "typescript": "3.8.3"
+    "ts-node": "8.8.2"
   },
   "jest": {
     "setupFilesAfterEnv": [
