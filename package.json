@@ -1,6 +1,6 @@
 {
   "name": "lehre",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Shinya Ohyanagi",
   "license": "MIT",
   "description": "Generate document block(JsDoc,EsDoc,TsDoc) from signature",
@@ -58,13 +58,24 @@
     "typescript": "3.8.3"
   },
   "jest": {
-    "setupFilesAfterEnv": ["./configs/jest.setup.ts"],
+    "setupFilesAfterEnv": [
+      "./configs/jest.setup.ts"
+    ],
     "testURL": "http://localhost/",
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
-    "testMatch": ["**/src/**/*.spec.ts?(x)"],
-    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
+    "testMatch": [
+      "**/src/**/*.spec.ts?(x)"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
     "globals": {
       "ts-jest": {
         "tsConfig": "<rootDir>/configs/tsconfig.test.json"
