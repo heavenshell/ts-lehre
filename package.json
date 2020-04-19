@@ -1,6 +1,6 @@
 {
   "name": "lehre",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "Shinya Ohyanagi",
   "license": "MIT",
   "description": "Generate document block(JsDoc,EsDoc,TsDoc) from signature",
@@ -21,7 +21,6 @@
     "type": "git",
     "url": "git+https://github.com/heavenshell/ts-lehre.git"
   },
-  "private": true,
   "scripts": {
     "build": "tsc",
     "build:dev": "tsc",
