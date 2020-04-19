@@ -30,7 +30,9 @@
     "lint:ts": "eslint --color --cache 'src/**/*.ts{,x}'",
     "lint:md": "markdownlint README.md",
     "lint": "run-p -l lint:*",
-    "test": "jest --maxWorkers=1"
+    "test": "jest --maxWorkers=1",
+    "release:prepare": "shipjs prepare",
+    "release:trigger": "shipjs trigger"
   },
   "devDependencies": {
     "@babel/parser": "7.9.4",
@@ -51,29 +53,19 @@
     "markdownlint-cli": "0.22.0",
     "npm-run-all": "4.1.5",
     "prettier": "2.0.4",
+    "shipjs": "0.18.2",
     "ts-jest": "25.3.1",
     "ts-node": "8.8.2",
     "typescript": "3.8.3"
   },
   "jest": {
-    "setupFilesAfterEnv": [
-      "./configs/jest.setup.ts"
-    ],
+    "setupFilesAfterEnv": ["./configs/jest.setup.ts"],
     "testURL": "http://localhost/",
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
-    "testMatch": [
-      "**/src/**/*.spec.ts?(x)"
-    ],
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ],
+    "testMatch": ["**/src/**/*.spec.ts?(x)"],
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
     "globals": {
       "ts-jest": {
         "tsConfig": "<rootDir>/configs/tsconfig.test.json"
