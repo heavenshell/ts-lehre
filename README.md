@@ -9,7 +9,7 @@ Generate JsDoc style document from source code.
 ## Install
 
 ```console
-yarn add -D -E lehre
+yarn add -D lehre
 ```
 
 ## Usage
@@ -24,10 +24,41 @@ Specify directory and ignore patterns.
 lehre --target-dir=./src --ignore-patterns="spec.ts"
 ```
 
-Specify file and use babel parser.
+Specify file.
+
+```console
+lehere --target-file=./src/app.ts
+```
+
+Use babel parser(default parser is TypeScript compiler api and recommend to use)
 
 ```console
 lehere --target-file=./src/app.ts --parser=babel
+```
+
+```console
+$ ./lehre --help
+Usage: lehre [options]
+
+Options:
+  -v, --version                 output the version number
+  -t, --target-file [path]      Path to target file.
+  -d, --target-dir [path]       Path to target directory.
+  --stdin                       Force reading input from STDIN
+  --write                       Edit files in-place
+  --template-path [path]        Custom formatter path
+  --ignores [path]              Ignore directory names
+  --ignore-patterns [patterns]  Ignore patterns
+  --parser [target]             Parser (default: "ts")
+  --style [style]               Output style(string | json) (default: "string")
+  --nest                        Enable to generate inner document(only
+                                parser=ts available)
+  --scriptTarget [target]       [ES3 | ES5 | ES2015 | ES2016 | ES2017 | ES2018
+                                | ES2019 | ESNext] (default: "ESNext")
+  --scriptKind [kind]           [JS | JSX | TS | TSX] (default: "TS")
+  --formatter [formatter]       Document formatter(jsdoc | esdoc | tsdoc)
+                                (default: "jsdoc")
+  -h, --help                    display help for command
 ```
 
 ## Formatters
@@ -55,7 +86,7 @@ cat src/app.ts | lehre --stdin --formatter=tsdoc
 ### Coustom formatter
 
 ```console
-cat src/app/ts | lehre --template-path=./examples/template.js
+cat src/app/ts | lehre --stdin --template-path=./examples/template.js
 ```
 
 ## Custom formatter
