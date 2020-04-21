@@ -1,5 +1,6 @@
 import {
   createSourceFile,
+  ExpressionStatement,
   forEachChild,
   isClassDeclaration,
   isInterfaceDeclaration,
@@ -12,6 +13,7 @@ import {
 } from 'typescript'
 
 import { getClassLikeDoc } from './classes'
+import { getVariableDocFromExpression } from './expression'
 import { getFunctionDoc } from './functions'
 import { getVariableDoc } from './variables'
 
@@ -149,6 +151,20 @@ export const parse = ({
         }
         if (!nest) {
           return
+        }
+        break
+      case SyntaxKind.ExpressionStatement:
+        if (node.hasOwnProperty('expression')) {
+          const { expression } = node as ExpressionStatement
+          if (
+            expression &&
+            expression.hasOwnProperty('left') &&
+            expression.hasOwnProperty('right')
+          ) {
+            const doc = getVariableDocFromExpression(expression, source)
+            doc.type = 'function'
+            docs.push(doc)
+          }
         }
         break
     }
