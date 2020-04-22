@@ -134,7 +134,7 @@ describe('expressions', () => {
     const ast = getAst(code)
 
     const start = { line: 0, column: 0 }
-    const end = { line: 0, column: 55 }
+    const end = { line: 0, column: 49 }
 
     expect(ast).toEqual({
       name: 'foo',

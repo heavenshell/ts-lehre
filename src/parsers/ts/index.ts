@@ -1,4 +1,5 @@
 import {
+  BinaryExpression,
   createSourceFile,
   ExpressionStatement,
   forEachChild,
@@ -161,9 +162,15 @@ export const parse = ({
             expression.hasOwnProperty('left') &&
             expression.hasOwnProperty('right')
           ) {
-            const doc = getVariableDocFromExpression(expression, source)
-            doc.type = 'function'
-            docs.push(doc)
+            const { right } = expression as BinaryExpression
+            if (right.hasOwnProperty('parameters')) {
+              const doc = getVariableDocFromExpression(expression, source)
+              doc.type = 'function'
+              docs.push(doc)
+            }
+            if (!nest) {
+              return
+            }
           }
         }
         break
