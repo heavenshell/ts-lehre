@@ -13,7 +13,6 @@ export const getVariableDocFromExpression = (
   node: Expression,
   source: SourceFile
 ) => {
-
   const params: ParamProps[] = []
 
   const start = source.getLineAndCharacterOfPosition(node.getStart(source))

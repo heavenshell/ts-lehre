@@ -13,7 +13,7 @@ import {
 } from 'typescript'
 
 import { getClassLikeDoc } from './classes'
-import { getVariableDocFromExpression } from './expression'
+import { getVariableDocFromExpression } from './expressions'
 import { getFunctionDoc } from './functions'
 import { getVariableDoc } from './variables'
 
