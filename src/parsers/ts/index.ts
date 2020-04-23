@@ -1,5 +1,7 @@
 import {
+  BinaryExpression,
   createSourceFile,
+  ExpressionStatement,
   forEachChild,
   isClassDeclaration,
   isInterfaceDeclaration,
@@ -12,6 +14,7 @@ import {
 } from 'typescript'
 
 import { getClassLikeDoc } from './classes'
+import { getVariableDocFromExpression } from './expressions'
 import { getFunctionDoc } from './functions'
 import { getVariableDoc } from './variables'
 
@@ -149,6 +152,26 @@ export const parse = ({
         }
         if (!nest) {
           return
+        }
+        break
+      case SyntaxKind.ExpressionStatement:
+        if (node.hasOwnProperty('expression')) {
+          const { expression } = node as ExpressionStatement
+          if (
+            expression &&
+            expression.hasOwnProperty('left') &&
+            expression.hasOwnProperty('right')
+          ) {
+            const { right } = expression as BinaryExpression
+            if (right.hasOwnProperty('parameters')) {
+              const doc = getVariableDocFromExpression(expression, source)
+              doc.type = 'function'
+              docs.push(doc)
+            }
+            if (!nest) {
+              return
+            }
+          }
         }
         break
     }
