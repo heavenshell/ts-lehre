@@ -155,13 +155,7 @@ describe('esdoc', () => {
     }
     const doc = generateFunctionDoc(params)
     const docs = doc.split('\n')
-    expect(docs).toEqual([
-      '/**',
-      ' * foo.',
-      ' *',
-      ' * @returns {string}',
-      ' */',
-    ])
+    expect(docs).toEqual(['/**', ' * foo.', ' *', ' * @return {string}', ' */'])
   })
 
   it('generateFunctionDoc with param', () => {
@@ -252,7 +246,7 @@ describe('esdoc', () => {
       ' *',
       ' * @param {string} arg1',
       ' * @param {number} arg2',
-      ' * @returns {number}',
+      ' * @return {number}',
       ' */',
     ])
   })
@@ -279,7 +273,7 @@ describe('esdoc', () => {
       ' * foo.',
       ' *',
       ' * @param {{ arg1: string }} arg1',
-      ' * @returns {number}',
+      ' * @return {number}',
       ' */',
     ])
   })

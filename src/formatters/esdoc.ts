@@ -58,7 +58,7 @@ module.exports = {
 
     const end = doc.returnType
       ? `
- * @returns {${doc.returnType}}
+ * @return {${doc.returnType}}
  */`
       : `
  */`
