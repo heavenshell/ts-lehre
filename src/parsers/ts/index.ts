@@ -6,6 +6,7 @@ import {
   isClassDeclaration,
   isInterfaceDeclaration,
   isFunctionDeclaration,
+  isTypeAliasDeclaration,
   Node as TsNode,
   ScriptKind,
   ScriptTarget,
@@ -16,6 +17,7 @@ import {
 import { getClassLikeDoc } from './classes'
 import { getVariableDocFromExpression } from './expressions'
 import { getFunctionDoc } from './functions'
+import { getTypeDoc } from './types'
 import { getVariableDoc } from './variables'
 
 import { DocProps, ParseProps } from '../../types'
@@ -117,6 +119,17 @@ export const parse = ({
           if (!nest) {
             return
           }
+        }
+        break
+      case SyntaxKind.TypeAliasDeclaration:
+        if (node.hasOwnProperty('jsDoc')) {
+          break
+        }
+        if (isTypeAliasDeclaration(node)) {
+          const typeDoc = getTypeDoc(node, source)
+          typeDoc.type = 'interface'
+          docs.push(typeDoc)
+          return
         }
         break
       case SyntaxKind.InterfaceDeclaration:
