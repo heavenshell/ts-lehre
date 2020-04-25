@@ -31,7 +31,7 @@ describe('esdoc', () => {
     }
     const doc = generateClassDoc(params)
     const docs = doc.split('\n')
-    expect(docs).toEqual(['/**', ' * Foo.', ' *', ' * @extends Base', ' */'])
+    expect(docs).toEqual(['/**', ' * Foo.', ' *', ' * @extends {Base}', ' */'])
   })
 
   it('generateClassDoc with implements', () => {
@@ -45,7 +45,13 @@ describe('esdoc', () => {
     }
     const doc = generateClassDoc(params)
     const docs = doc.split('\n')
-    expect(docs).toEqual(['/**', ' * Foo.', ' *', ' * @implements Base', ' */'])
+    expect(docs).toEqual([
+      '/**',
+      ' * Foo.',
+      ' *',
+      ' * @implements {Base}',
+      ' */',
+    ])
   })
 
   it('generateClassDoc with implements and extends', () => {
@@ -66,8 +72,8 @@ describe('esdoc', () => {
       '/**',
       ' * Foo.',
       ' *',
-      ' * @implements Base',
-      ' * @extends BaseClass',
+      ' * @implements {Base}',
+      ' * @extends {BaseClass}',
       ' */',
     ])
   })
@@ -97,7 +103,7 @@ describe('esdoc', () => {
     }
     const doc = generateInterfaceDoc(params)
     const docs = doc.split('\n')
-    expect(docs).toEqual(['/**', ' * Foo.', ' *', ' * @extends Base', ' */'])
+    expect(docs).toEqual(['/**', ' * Foo.', ' *', ' * @extends {Base}', ' */'])
   })
 
   it('generatePropertyDoc', () => {

@@ -25,7 +25,7 @@ const generateClassDoc = (doc: ClassDocProps) => {
 /**
  * ${doc.name}.
  *
- * @${doc.heritageClauses.map((h) => `${h.type} ${h.value}`).join('\n * @')}
+ * @${doc.heritageClauses.map((h) => `${h.type} {${h.value}}`).join('\n * @')}
  */`
 
   return d.trim()
