@@ -70,6 +70,7 @@
     "testMatch": [
       "**/src/**/*.spec.ts?(x)"
     ],
+    "modulePathIgnorePatterns": ["<rootDir>/dist"],
     "moduleFileExtensions": [
       "ts",
       "tsx",
