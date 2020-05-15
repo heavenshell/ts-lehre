@@ -9,6 +9,7 @@ import {
 
 import { getParameter } from './parameters'
 
+import { has } from '../helpers'
 import { FunctionDocProps, LineProps, ParamProps } from '../../types'
 
 export const getVariableDoc = (
@@ -28,9 +29,9 @@ export const getVariableDoc = (
   }
 
   if (
-    node.hasOwnProperty('initializer') &&
+    has(node, 'initializer') &&
     node.initializer &&
-    node.initializer.hasOwnProperty('parameters')
+    has(node.initializer, 'parameters')
   ) {
     doc.type = 'function'
     const parameters: NodeArray<ParameterDeclaration> = (node.initializer as ArrowFunction)
@@ -38,14 +39,14 @@ export const getVariableDoc = (
     doc.params = parameters.map((param) => {
       return getParameter(param, source)
     })
-    if (node.initializer.hasOwnProperty('type')) {
+    if (has(node.initializer, 'type')) {
       const type = (node.initializer as ArrowFunction).type
       if (type) {
         doc.returnType = type.getText(source)
       }
     }
   } else {
-    if (node.initializer && node.hasOwnProperty('type') && node.type) {
+    if (node.initializer && has(node, 'type') && node.type) {
       doc.type = 'property'
       const type = (node.initializer as ArrowFunction).type
       if (type) {

@@ -20,6 +20,7 @@ import { getFunctionDoc } from './functions'
 import { getTypeDoc } from './types'
 import { getVariableDoc } from './variables'
 
+import { has } from '../helpers'
 import { DocProps, ParseProps } from '../../types'
 
 const getTarget = (target: string) => {
@@ -85,7 +86,7 @@ export const parse = ({
   const visit = (node: TsNode) => {
     switch (node.kind) {
       case SyntaxKind.FunctionDeclaration:
-        if (node.hasOwnProperty('jsDoc')) {
+        if (has(node, 'jsDoc')) {
           break
         }
         if (isFunctionDeclaration(node) && node.name) {
@@ -96,10 +97,10 @@ export const parse = ({
         }
         break
       case SyntaxKind.VariableStatement:
-        if (node.hasOwnProperty('jsDoc')) {
+        if (has(node, 'jsDoc')) {
           break
         }
-        if (node.hasOwnProperty('declarationList')) {
+        if (has(node, 'declarationList')) {
           const start = source.getLineAndCharacterOfPosition(
             node.getStart(source)
           )
@@ -122,7 +123,7 @@ export const parse = ({
         }
         break
       case SyntaxKind.TypeAliasDeclaration:
-        if (node.hasOwnProperty('jsDoc')) {
+        if (has(node, 'jsDoc')) {
           break
         }
         if (isTypeAliasDeclaration(node)) {
@@ -133,7 +134,7 @@ export const parse = ({
         }
         break
       case SyntaxKind.InterfaceDeclaration:
-        if (node.hasOwnProperty('jsDoc')) {
+        if (has(node, 'jsDoc')) {
           break
         }
         if (isInterfaceDeclaration(node) && node.name) {
@@ -151,7 +152,7 @@ export const parse = ({
         }
         break
       case SyntaxKind.ClassDeclaration:
-        if (node.hasOwnProperty('jsDoc')) {
+        if (has(node, 'jsDoc')) {
           break
         }
         if (isClassDeclaration(node) && node.name) {
@@ -168,15 +169,15 @@ export const parse = ({
         }
         break
       case SyntaxKind.ExpressionStatement:
-        if (node.hasOwnProperty('expression')) {
+        if (has(node, 'expression')) {
           const { expression } = node as ExpressionStatement
           if (
             expression &&
-            expression.hasOwnProperty('left') &&
-            expression.hasOwnProperty('right')
+            has(expression, 'left') &&
+            has(expression, 'right')
           ) {
             const { right } = expression as BinaryExpression
-            if (right.hasOwnProperty('parameters')) {
+            if (has(right, 'parameters')) {
               const doc = getVariableDocFromExpression(expression, source)
               doc.type = 'function'
               docs.push(doc)

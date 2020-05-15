@@ -7,6 +7,7 @@ import {
 
 import { getParameter } from './parameters'
 
+import { has } from '../helpers'
 import { ParamProps } from '../../types'
 
 export const getVariableDocFromExpression = (
@@ -32,7 +33,7 @@ export const getVariableDocFromExpression = (
   const func = right as FunctionExpression
   doc.params = func.parameters.map((p) => getParameter(p, source))
 
-  if (right.hasOwnProperty('type')) {
+  if (has(right, 'type')) {
     doc.returnType = func.type ? func.type.getText(source) : ''
   }
 
