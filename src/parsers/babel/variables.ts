@@ -1,7 +1,6 @@
 import {
   ArrowFunctionExpression,
   Identifier,
-  // StringLiteral,
   TSTypeAnnotation,
   VariableDeclarator,
 } from '@babel/types'
@@ -9,25 +8,13 @@ import {
 import { getLocation } from './helper'
 import { getParameter, getType } from './parameters'
 
+import { has } from '../helpers'
 import { ParamProps } from '../../types'
 
 export const getVariableDoc = (node: VariableDeclarator, lines: string[]) => {
   const init = node.init as ArrowFunctionExpression
   const params: ParamProps[] = init.params.map((param) => {
     return getParameter(param as Identifier, lines)
-    // switch (param.type) {
-    //   case 'Identifier':
-    //     return getParameter(param as Identifier, lines)
-    //   case 'AssignmentPattern':
-    //     const parameter = getParameter(param.left as Identifier, lines)
-    //     return {
-    //       ...parameter,
-    //       default:
-    //         (param.right as StringLiteral).value ||
-    //         getType(param.right, lines).type,
-    //     }
-    // }
-    // return { name: '', type: '', default: '', alias: '' }
   })
 
   const { start, end } = getLocation(node)
@@ -41,7 +28,7 @@ export const getVariableDoc = (node: VariableDeclarator, lines: string[]) => {
     returnType: '',
   }
 
-  if (init.hasOwnProperty('returnType') && init.returnType) {
+  if (has(init, 'returnType') && init.returnType) {
     const { type } = getType(
       (init.returnType as TSTypeAnnotation).typeAnnotation,
       lines

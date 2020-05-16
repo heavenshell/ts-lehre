@@ -2,6 +2,7 @@ import { FunctionDeclaration, SourceFile } from 'typescript'
 
 import { getParameter } from './parameters'
 
+import { has } from '../helpers'
 import { FunctionDocProps, ParamProps } from '../../types'
 
 export const getFunctionDoc = (
@@ -21,12 +22,12 @@ export const getFunctionDoc = (
     returnType: '',
     params,
   }
-  if (node.hasOwnProperty('parameters')) {
+  if (has(node, 'parameters')) {
     doc.params = node.parameters.map((n) => {
       return getParameter(n, source)
     })
   }
-  if (node.hasOwnProperty('type') && node.type) {
+  if (has(node, 'type') && node.type) {
     doc.returnType = node.type.getText(source)
   }
   return doc

@@ -5,6 +5,7 @@ import {
   TypeReferenceNode,
 } from 'typescript'
 
+import { has } from '../helpers'
 import { ParamProps } from '../../types'
 
 export const getTypeFromKind = (kind: SyntaxKind) => {
@@ -43,7 +44,7 @@ export const getParameter = (
     alias: '',
   }
 
-  if (node.hasOwnProperty('type') && node.type) {
+  if (has(node, 'type') && node.type) {
     // Type exists
     switch (node.type.kind) {
       case SyntaxKind.TypeLiteral:
@@ -64,7 +65,7 @@ export const getParameter = (
     }
   }
 
-  if (node.hasOwnProperty('initializer') && node.initializer) {
+  if (has(node, 'initializer') && node.initializer) {
     // Default keyword argument exists
     param.default = node.initializer.getText(source)
   }

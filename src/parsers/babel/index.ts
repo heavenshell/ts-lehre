@@ -6,6 +6,7 @@ import { getAst, getLocation, isCommentBlock } from './helper'
 import { getInterfaceDoc } from './interfaces'
 import { getVariableDoc } from './variables'
 
+import { has } from '../helpers'
 import { DocProps, ParseProps } from '../../types'
 
 export const parse = ({ code, lines, scriptKind }: ParseProps) => {
@@ -44,7 +45,7 @@ export const parse = ({ code, lines, scriptKind }: ParseProps) => {
         switch (node.declaration.type) {
           case 'ClassDeclaration':
             // Decorator exists
-            if (node.declaration.hasOwnProperty('decorators')) {
+            if (has(node.declaration, 'decorators')) {
               const { start, end } = getLocation(node.declaration)
               docs.push({ ...getClassDoc(node.declaration, lines), start, end })
             } else {
@@ -75,7 +76,7 @@ export const parse = ({ code, lines, scriptKind }: ParseProps) => {
         switch (node.declaration.type) {
           case 'ClassDeclaration':
             // `export class Foo {}`
-            if (node.declaration.hasOwnProperty('decorators')) {
+            if (has(node.declaration, 'decorators')) {
               // Decorator exists
               const { start, end } = getLocation(node.declaration)
               docs.push({ ...getClassDoc(node.declaration, lines), start, end })

@@ -10,6 +10,7 @@ import {
 
 import { getParameter } from './parameters'
 
+import { has } from '../helpers'
 import {
   ClassDocProps,
   FunctionDocProps,
@@ -86,7 +87,7 @@ export const getClassLikeDoc = (
         doc.name = (member.name as Identifier).escapedText.toString()
         break
     }
-    if (member.hasOwnProperty('parameters')) {
+    if (has(member, 'parameters')) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const parameters: NodeArray<ParameterDeclaration> = (member as any)
         .parameters
@@ -94,7 +95,7 @@ export const getClassLikeDoc = (
         return getParameter(p, source)
       })
     }
-    if (member.hasOwnProperty('type')) {
+    if (has(member, 'type')) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const type = (member as any).type
       if (type) {
