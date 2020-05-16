@@ -11,7 +11,6 @@ import {
 import { getParameter } from './parameters'
 
 import { has } from '../helpers'
-
 import {
   ClassDocProps,
   FunctionDocProps,
