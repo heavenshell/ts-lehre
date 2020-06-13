@@ -27,13 +27,13 @@ lehre --target-dir=./src --ignore-patterns="spec.ts"
 Specify file.
 
 ```console
-lehere --target-file=./src/app.ts
+lehre --target-file=./src/app.ts
 ```
 
 Use babel parser(default parser is TypeScript compiler api and recommend to use)
 
 ```console
-lehere --target-file=./src/app.ts --parser=babel
+lehre --target-file=./src/app.ts --parser=babel
 ```
 
 ```console
