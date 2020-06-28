@@ -9,7 +9,7 @@ import { getVariableDoc } from './variables'
 import { has } from '../helpers'
 import { DocProps, ParseProps } from '../../types'
 
-export const parse = ({ code, lines, scriptKind }: ParseProps) => {
+export const parse = ({ code, lines, scriptKind }: ParseProps): DocProps[] => {
   const ast = getAst(code, scriptKind)
 
   const docs: DocProps[] = []
@@ -73,6 +73,9 @@ export const parse = ({ code, lines, scriptKind }: ParseProps) => {
         docs.push({ ...getClassDoc(node, lines), start, end })
         break
       case 'ExportNamedDeclaration':
+        if (!node.declaration) {
+          break
+        }
         switch (node.declaration.type) {
           case 'ClassDeclaration':
             // `export class Foo {}`
@@ -88,7 +91,7 @@ export const parse = ({ code, lines, scriptKind }: ParseProps) => {
             // `export const foo = () => {}`
             const declaration = node.declaration
             const init = declaration.declarations[0].init
-            if (init.type === 'ArrowFunctionExpression') {
+            if (init && init.type === 'ArrowFunctionExpression') {
               docs.push({
                 ...getVariableDoc(declaration.declarations[0], lines),
                 start,
