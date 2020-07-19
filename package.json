@@ -34,10 +34,10 @@
     "release:trigger": "shipjs trigger"
   },
   "dependencies": {
-    "@babel/parser": "7.10.4",
-    "@babel/types": "7.10.4",
+    "@babel/parser": "7.10.5",
+    "@babel/types": "7.10.5",
     "commander": "5.1.0",
-    "typescript": "3.9.6"
+    "typescript": "3.9.7"
   },
   "devDependencies": {
     "@types/babel-types": "7.0.8",
