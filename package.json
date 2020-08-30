@@ -36,7 +36,7 @@
   "dependencies": {
     "@babel/parser": "7.11.4",
     "@babel/types": "7.11.0",
-    "commander": "6.0.0",
+    "commander": "6.1.0",
     "typescript": "3.9.7"
   },
   "devDependencies": {
