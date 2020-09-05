@@ -23,7 +23,6 @@ const isDryRun = argv => {
 }
 
 module.exports = {
-  mergeStrategy: { toSameBranch: ['master'] },
   updateChangelog: false,
   publishCommand: ({ defaultCommand }) => `${defaultCommand} --access public`,
   afterPublish: async () => {

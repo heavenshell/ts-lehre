@@ -6,14 +6,21 @@ on:
       - master
 
 jobs:
-  update_draft_release:
+  update_release_draft:
     runs-on: ubuntu-latest
     steps:
-      - uses: toolmantim/release-drafter@v5.2.0
+      - uses: release-drafter/release-drafter@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true && startsWith(github.head_ref, 'releases/v')
+    steps:
       - uses: actions/checkout@v2
         with:
+          fetch-depth: 0
           ref: master
       - uses: actions/setup-node@v1
         with:
