@@ -3,12 +3,11 @@ const path = require('path')
 
 const dotenv = require('dotenv')
 const { Octokit } = require('@octokit/rest')
-const { loadConfig, getRepoInfo } = require('shipjs-lib')
+const { getRepoInfo } = require('shipjs-lib')
 
 dotenv.config({ path: path.resolve('.', '.env') })
 
-const { remote } = loadConfig('.')
-const { owner, name: repo } = getRepoInfo(remote, '.')
+const { owner, name: repo } = getRepoInfo('origin', '.')
 
 const getOctokit = () => {
   const octokit = new Octokit({
