@@ -83,7 +83,7 @@
     ],
     "globals": {
       "ts-jest": {
-        "tsConfig": "<rootDir>/configs/tsconfig.test.json"
+        "tsconfig": "<rootDir>/configs/tsconfig.test.json"
       }
     }
   },
