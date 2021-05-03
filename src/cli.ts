@@ -48,20 +48,22 @@ program
   )
   .parse(process.argv)
 
+const options = program.opts()
+
 const config = {
-  parser: program.parser,
-  targetDir: program.targetDir || '',
-  targetFile: program.targetFile || '',
-  formatter: program.formatter,
-  isStdin: program.stdin || false,
-  templatePath: program.templatePath || '',
-  style: program.style,
-  ignores: getIgnores(program.ignores || ''),
-  ignorePatterns: program.ignorePatterns || '',
-  nest: program.nest || false,
-  write: program.write || false,
-  scriptTarget: program.scriptTarget,
-  scriptKind: program.scriptKind,
+  parser: options.parser,
+  targetDir: options.targetDir || '',
+  targetFile: options.targetFile || '',
+  formatter: options.formatter,
+  isStdin: options.stdin || false,
+  templatePath: options.templatePath || '',
+  style: options.style,
+  ignores: getIgnores(options.ignores || ''),
+  ignorePatterns: options.ignorePatterns || '',
+  nest: options.nest || false,
+  write: options.write || false,
+  scriptTarget: options.scriptTarget,
+  scriptKind: options.scriptKind,
 }
 
 main(config)
