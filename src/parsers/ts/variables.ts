@@ -34,8 +34,9 @@ export const getVariableDoc = (
     has(node.initializer, 'parameters')
   ) {
     doc.type = 'function'
-    const parameters: NodeArray<ParameterDeclaration> = (node.initializer as ArrowFunction)
-      .parameters
+    const parameters: NodeArray<ParameterDeclaration> = (
+      node.initializer as ArrowFunction
+    ).parameters
     doc.params = parameters.map((param) => {
       return getParameter(param, source)
     })
