@@ -37,7 +37,7 @@
     "@babel/parser": "7.14.7",
     "@babel/types": "7.14.5",
     "commander": "7.2.0",
-    "typescript": "4.3.4"
+    "typescript": "4.3.5"
   },
   "devDependencies": {
     "@types/babel-types": "7.0.9",
