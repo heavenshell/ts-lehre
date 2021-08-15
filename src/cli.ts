@@ -1,4 +1,4 @@
-import program from 'commander'
+import { Command } from 'commander'
 
 import { main } from './main'
 
@@ -7,6 +7,8 @@ import { version } from '../package.json'
 const getIgnores = (ignores: string) => {
   return ignores.split(',')
 }
+
+const program = new Command()
 
 program
   .version(version, '-v, --version')
