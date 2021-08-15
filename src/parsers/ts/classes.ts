@@ -80,6 +80,30 @@ export const getClassLikeDoc = (
       case SyntaxKind.PropertySignature:
       case SyntaxKind.PropertyDeclaration:
         doc.name = (member.name as Identifier).escapedText.toString()
+
+        if (has(member, 'initializer')) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const initializer = (member as any).initializer
+          if (initializer && has(initializer, 'parameters')) {
+            // method with arrow function
+            //
+            // class Foo {
+            //   method = (arg1: number): number => 1
+            // }
+            const parameters: NodeArray<ParameterDeclaration> =
+              initializer.parameters
+            doc.params = parameters.map((p) => {
+              return getParameter(p, source)
+            })
+
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const type = (initializer as any).type
+            if (type) {
+              doc.returnType = type.getText(source)
+            }
+            break
+          }
+        }
         doc.type = 'property'
         break
       case SyntaxKind.MethodDeclaration:
