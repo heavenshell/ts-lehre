@@ -26,6 +26,24 @@ export const getClassDoc = (node: ClassDeclaration, lines: string[]) => {
     switch (c.type) {
       case 'ClassProperty':
         doc.name = (c.key as Identifier).name
+        if (c.value && c.value.type === 'ArrowFunctionExpression') {
+          // method with arrow function
+          //
+          // class Foo {
+          //   method = (arg1: number): number => 1
+          // }
+          doc.type = 'function'
+          doc.params = c.value.params.map((param) =>
+            getParameter(param as Identifier, lines)
+          )
+          if (c.value.returnType) {
+            doc.returnType = getType(
+              (c.value.returnType as TSTypeAnnotation).typeAnnotation,
+              lines
+            ).type
+          }
+          break
+        }
         doc.type = 'property'
         if (c.typeAnnotation) {
           doc.returnType = getType(

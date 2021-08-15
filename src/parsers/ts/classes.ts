@@ -82,6 +82,7 @@ export const getClassLikeDoc = (
         doc.name = (member.name as Identifier).escapedText.toString()
 
         if (has(member, 'initializer')) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const initializer = (member as any).initializer
           if (initializer && has(initializer, 'parameters')) {
             // method with arrow function
@@ -89,11 +90,8 @@ export const getClassLikeDoc = (
             // class Foo {
             //   method = (arg1: number): number => 1
             // }
-            //
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const parameters: NodeArray<ParameterDeclaration> = (
-              initializer as any
-            ).parameters
+            const parameters: NodeArray<ParameterDeclaration> =
+              initializer.parameters
             doc.params = parameters.map((p) => {
               return getParameter(p, source)
             })
