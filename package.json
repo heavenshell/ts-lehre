@@ -34,17 +34,17 @@
     "release:trigger": "shipjs trigger"
   },
   "dependencies": {
-    "@babel/parser": "7.15.2",
+    "@babel/parser": "7.15.3",
     "@babel/types": "7.15.0",
     "commander": "7.2.0",
     "typescript": "4.3.5"
   },
   "devDependencies": {
     "@types/babel-types": "7.0.10",
-    "@types/jest": "26.0.24",
-    "@types/node": "15.12.1",
-    "@typescript-eslint/eslint-plugin": "4.29.0",
-    "@typescript-eslint/parser": "4.29.0",
+    "@types/jest": "27.0.1",
+    "@types/node": "16.6.1",
+    "@typescript-eslint/eslint-plugin": "4.29.1",
+    "@typescript-eslint/parser": "4.29.1",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-import": "2.24.0",
