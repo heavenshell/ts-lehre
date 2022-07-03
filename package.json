@@ -42,13 +42,13 @@
   "devDependencies": {
     "@types/babel-types": "7.0.11",
     "@types/jest": "27.5.2",
-    "@types/node": "16.11.41",
-    "@typescript-eslint/eslint-plugin": "5.29.0",
-    "@typescript-eslint/parser": "5.29.0",
-    "eslint": "8.18.0",
+    "@types/node": "16.11.43",
+    "@typescript-eslint/eslint-plugin": "5.30.4",
+    "@typescript-eslint/parser": "5.30.4",
+    "eslint": "8.19.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-import": "2.26.0",
-    "eslint-plugin-prettier": "4.0.0",
+    "eslint-plugin-prettier": "4.2.1",
     "husky": "7.0.4",
     "jest": "27.5.1",
     "lint-staged": "12.5.0",
@@ -57,7 +57,7 @@
     "prettier": "2.7.1",
     "shipjs": "0.24.4",
     "ts-jest": "27.1.5",
-    "ts-node": "10.8.1"
+    "ts-node": "10.8.2"
   },
   "jest": {
     "setupFilesAfterEnv": [
