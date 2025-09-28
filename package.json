@@ -40,24 +40,24 @@
     "typescript": "4.8.4"
   },
   "devDependencies": {
-    "@types/babel-types": "7.0.11",
+    "@types/babel-types": "7.0.16",
     "@types/jest": "27.5.2",
-    "@types/node": "16.11.43",
-    "@typescript-eslint/eslint-plugin": "5.30.5",
-    "@typescript-eslint/parser": "5.30.5",
-    "eslint": "8.19.0",
-    "eslint-config-prettier": "8.5.0",
-    "eslint-plugin-import": "2.26.0",
-    "eslint-plugin-prettier": "4.2.1",
+    "@types/node": "16.18.126",
+    "@typescript-eslint/eslint-plugin": "5.62.0",
+    "@typescript-eslint/parser": "5.62.0",
+    "eslint": "8.57.1",
+    "eslint-config-prettier": "8.10.2",
+    "eslint-plugin-import": "2.32.0",
+    "eslint-plugin-prettier": "4.2.5",
     "husky": "7.0.4",
     "jest": "27.5.1",
     "lint-staged": "12.5.0",
-    "markdownlint-cli": "0.31.1",
-    "npm-run-all": "4.1.5",
-    "prettier": "2.7.1",
-    "shipjs": "0.24.4",
+    "markdownlint-cli": "0.45.0",
+    "npm-run-all2": "5.0.0",
+    "prettier": "2.8.8",
+    "shipjs": "0.27.0",
     "ts-jest": "27.1.5",
-    "ts-node": "10.8.2"
+    "ts-node": "10.9.2"
   },
   "jest": {
     "setupFilesAfterEnv": [
